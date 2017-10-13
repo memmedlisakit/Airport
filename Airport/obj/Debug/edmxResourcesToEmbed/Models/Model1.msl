@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AirportDatabaseModelStoreContainer" CdmEntityContainer="AirportDatabaseEntities">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="AirportDatabaseModel.City">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Country_id" ColumnName="Country_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="AirportDatabaseModel.Company">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Country_id" ColumnName="Country_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="AirportDatabaseModel.Country">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flights">
+      <EntityTypeMapping TypeName="AirportDatabaseModel.Flight">
+        <MappingFragment StoreEntitySet="Flights">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Company_id" ColumnName="Company_id" />
+          <ScalarProperty Name="City_id" ColumnName="City_id" />
+          <ScalarProperty Name="Terminal_id" ColumnName="Terminal_id" />
+          <ScalarProperty Name="Gate_id" ColumnName="Gate_id" />
+          <ScalarProperty Name="Runway_id" ColumnName="Runway_id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gates">
+      <EntityTypeMapping TypeName="AirportDatabaseModel.Gate">
+        <MappingFragment StoreEntitySet="Gates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Runways">
+      <EntityTypeMapping TypeName="AirportDatabaseModel.Runway">
+        <MappingFragment StoreEntitySet="Runways">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Terminals">
+      <EntityTypeMapping TypeName="AirportDatabaseModel.Terminal">
+        <MappingFragment StoreEntitySet="Terminals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

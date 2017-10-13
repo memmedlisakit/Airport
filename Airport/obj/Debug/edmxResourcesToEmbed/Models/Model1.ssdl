@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirportDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="Country_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Country_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Flights">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="tinyint" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Company_id" Type="int" />
+    <Property Name="City_id" Type="int" />
+    <Property Name="Terminal_id" Type="int" />
+    <Property Name="Gate_id" Type="int" />
+    <Property Name="Runway_id" Type="int" />
+    <Property Name="Status" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Gates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Runways">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Terminals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <Association Name="FK_Cities_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cities">
+        <PropertyRef Name="Country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Companies_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Companies">
+        <PropertyRef Name="Country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flights">
+        <PropertyRef Name="City_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_Companies">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+    <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flights">
+        <PropertyRef Name="Company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_Gates">
+    <End Role="Gates" Type="Self.Gates" Multiplicity="0..1" />
+    <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flights">
+        <PropertyRef Name="Gate_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_Runways">
+    <End Role="Runways" Type="Self.Runways" Multiplicity="0..1" />
+    <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Runways">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flights">
+        <PropertyRef Name="Runway_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flights_Terminals">
+    <End Role="Terminals" Type="Self.Terminals" Multiplicity="0..1" />
+    <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terminals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flights">
+        <PropertyRef Name="Terminal_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AirportDatabaseModelStoreContainer">
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Flights" EntityType="Self.Flights" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gates" EntityType="Self.Gates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Runways" EntityType="Self.Runways" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Terminals" EntityType="Self.Terminals" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cities_Countries" Association="Self.FK_Cities_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Cities" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Companies_Countries" Association="Self.FK_Companies_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Companies" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_Cities" Association="Self.FK_Flights_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Flights" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_Companies" Association="Self.FK_Flights_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Flights" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_Gates" Association="Self.FK_Flights_Gates">
+      <End Role="Gates" EntitySet="Gates" />
+      <End Role="Flights" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_Runways" Association="Self.FK_Flights_Runways">
+      <End Role="Runways" EntitySet="Runways" />
+      <End Role="Flights" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flights_Terminals" Association="Self.FK_Flights_Terminals">
+      <End Role="Terminals" EntitySet="Terminals" />
+      <End Role="Flights" EntitySet="Flights" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
